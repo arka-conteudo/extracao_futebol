@@ -25,8 +25,8 @@ RUN playwright install --with-deps
 # Copia todo o código do projeto
 COPY . .
 
-# Expõe a porta 8005 para o Django
-EXPOSE 8005
+# Expõe a porta 8000 para o Django
+EXPOSE 8000
 
 # Comando padrão para rodar a aplicação
-CMD ["gunicorn", "--bind", "0.0.0.0:8005", "futebol.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "futebol.wsgi:application"]
