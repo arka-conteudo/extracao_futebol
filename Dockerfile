@@ -17,7 +17,7 @@ RUN  libnss3 libatk-bridge2.0-0 libxcomposite1 \
 RUN pip install --upgrade pip setuptools wheel
 
 # Copia o arquivo de dependências antes para aproveitar cache
-COPY ./requirements.txt /app/
+COPY ./requirements.txt /app/ 
 
 # Instala as dependências do projeto
 RUN pip install --no-cache-dir -r requirements.txt
