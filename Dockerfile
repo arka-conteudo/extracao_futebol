@@ -10,8 +10,17 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 
-RUN  libnss3 libatk-bridge2.0-0 libxcomposite1 \
-    libxdamage1 libxrandr2 libgbm1 libgtk-3-0 libasound2 xvfb
+RUN apt update && apt install -y \
+    libnss3 \
+    libatk-bridge2.0-0 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxrandr2 \
+    libgbm1 \
+    libgtk-3-0 \
+    libasound2 \
+    xvfb
+
     
 # Atualiza pip, setuptools e wheel antes da instalação
 RUN pip install --upgrade pip setuptools wheel
