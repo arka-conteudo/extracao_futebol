@@ -13,6 +13,10 @@ RUN apt-get update && apt-get install -y \
 COPY ./requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Instalar Playwright e suas dependências
+RUN pip install playwright
+RUN playwright install --with-deps
+
 # Instala o Gunicorn
 RUN pip install gunicorn
 
