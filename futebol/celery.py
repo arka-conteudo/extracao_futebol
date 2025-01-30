@@ -15,12 +15,10 @@ app.config_from_object("django.conf:settings", namespace="CELERY")
 app.autodiscover_tasks()
 
 
-
-# Configurações Celery Beat (opcional, se usado)
 app.conf.beat_schedule = {
-    'scrape_campeonato_every_20_minutes': {
+    'scrape_campeonato_daily_23h': {
         'task': 'jogos.tasks.scrape_campeonato',  # Caminho completo para a task
-        'schedule': crontab(minute='*/20'),  # A cada 10 minutos
+        'schedule': crontab(hour=23, minute=0),  # Executa às 23:00 todos os dias
     },
 }
 
