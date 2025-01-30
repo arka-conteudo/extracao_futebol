@@ -33,8 +33,8 @@ INSTALLED_APPS = [
 ]
 
 
-ALLOWED_HOSTS = ['painel.energee.com.br', 'www.painel.energee.com.br','127.0.0.1','185.139.1.143']
-CSRF_TRUSTED_ORIGINS = ['https://painel.energee.com.br']
+ALLOWED_HOSTS = ['147.93.66.220']
+CSRF_TRUSTED_ORIGINS = ['147.93.66.220']
 
 
 CORS_ALLOWED_ORIGINS = [
@@ -43,7 +43,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8080',  
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    'https://painel.energee.com.br', 
+    '147.93.66.220', 
 ]
 
 CORS_ALLOW_CREDENTIALS = True
