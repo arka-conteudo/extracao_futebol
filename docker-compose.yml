@@ -31,11 +31,12 @@ services:
   nginx:
     image: nginx:latest
     container_name: futebol_nginx
-    restart: always
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/nginx/ssl:/etc/nginx/ssl:ro
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - futebol_web
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./staticfiles:/app/staticfiles
+
