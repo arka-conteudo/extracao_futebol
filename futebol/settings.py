@@ -32,9 +32,8 @@ INSTALLED_APPS = [
     'jogos',
 ]
 
-
-ALLOWED_HOSTS = ['147.93.66.220']
-CSRF_TRUSTED_ORIGINS = ["http://147.93.66.220", "https://147.93.66.220"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "147.93.66.220"]
+CSRF_TRUSTED_ORIGINS = ["https://147.93.66.220"]
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080', 
