@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
-DEBUG = False
+DEBUG = True
 
 # Definição das aplicações instaladas
 INSTALLED_APPS = [
@@ -33,7 +33,7 @@ INSTALLED_APPS = [
 ]
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "147.93.66.220"]
-CSRF_TRUSTED_ORIGINS = ["https://147.93.66.220"]
+CSRF_TRUSTED_ORIGINS = ["http://147.93.66.220"]
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080', 
