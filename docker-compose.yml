@@ -64,7 +64,9 @@ services:
       - futebol_net
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - static_volume:/app/staticfiles
+
 
 networks:
   futebol_net:
