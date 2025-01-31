@@ -1,12 +1,16 @@
+version: "3.8"
+
 services:
   futebol_web:
     build: .
+    image: futebol_django
     container_name: futebol_web
     restart: always
     ports:
       - "8000:8000"
     depends_on:
-      - redis
+      redis:
+        condition: service_healthy
     networks:
       - futebol_net
     environment:
@@ -15,20 +19,24 @@ services:
       - static_volume:/app/staticfiles
 
   futebol_celery:
-    build: .
+    image: futebol_django  # Usa a mesma imagem de futebol_web
     container_name: futebol_celery
-    command: celery -A futebol worker --loglevel=info
+    command: celery -A futebol worker --loglevel=info --queues=default --concurrency=4
     depends_on:
-      - redis
+      redis:
+        condition: service_healthy
+    environment:
+      - C_FORCE_ROOT=true
     networks:
       - futebol_net
 
   futebol_celery_beat:
-    build: .
+    image: futebol_django  # Usa a mesma imagem de futebol_web
     container_name: futebol_celery_beat
-    command: celery -A futebol beat --loglevel=info
+    command: celery -A futebol beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
     depends_on:
-      - redis
+      redis:
+        condition: service_healthy
     networks:
       - futebol_net
 
@@ -41,6 +49,11 @@ services:
       - redis_data:/data
     networks:
       - futebol_net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
 
   nginx:
     image: nginx:latest
