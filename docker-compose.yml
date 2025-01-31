@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   futebol_web:
     build: .
@@ -18,6 +16,7 @@ services:
       - static_volume:/app/staticfiles
 
   futebol_celery:
+    build: .
     container_name: futebol_celery
     command: celery -A futebol worker --loglevel=info --queues=default --concurrency=4
     depends_on:
@@ -29,6 +28,7 @@ services:
       - futebol_net
 
   futebol_celery_beat:
+    build: .
     container_name: futebol_celery_beat
     command: celery -A futebol beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
     depends_on:
